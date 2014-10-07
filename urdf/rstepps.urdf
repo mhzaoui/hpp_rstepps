@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<robot name="rstepps">
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size=".1 0.6 .01"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0 0 .8 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="right_leg">
+    <visual>
+      <geometry>
+        <box size="0.010 .1 .4"/>
+      </geometry>
+      <origin rpy="0 1.57075 0" xyz="0 0 -0."/>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+
+
+  <joint name="base_to_right_leg" type="fixed">
+    <parent link="base_link"/>
+    <child link="right_leg"/>
+    <origin xyz="0 -0.15 -.01"/>
+  </joint>
+
+   <link name="front_leg">
+    <visual>
+      <geometry>
+        <box size="0.010 .1 .4"/>
+      </geometry>
+      <origin rpy="0 1.57075 0" xyz="0 0 -0."/>
+      <material name="white">
+        <color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="base_to_front_leg" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_leg"/>
+    <origin xyz="0 0.25 -.01"/>
+  </joint>
+
+
+ <link name="left_front_wheel">
+    <visual>
+      <geometry>
+ 	<mesh filename="package://husky_description/meshes/wheel.stl" />
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+
+  <joint name="left_front_wheel_joint" type="fixed">
+    <parent link="front_leg"/>
+    <child link="left_front_wheel"/>
+    <origin rpy="0 1.57075 1.570" xyz="0.25 0.0 -0.05"/>
+  </joint>
+
+
+ <link name="right_front_wheel">
+    <visual>
+      <geometry>
+	<mesh filename="package://husky_description/meshes/wheel.stl" />
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+
+  <joint name="right_front_wheel_joint" type="fixed">
+    <parent link="front_leg"/>
+    <child link="right_front_wheel"/>
+    <origin rpy="0 1.57075 1.570" xyz="-0.25 0.0 -0.05"/>
+  </joint>
+
+  <link name="left_back_wheel">
+    <visual>
+      <geometry>
+	<mesh filename="package://husky_description/meshes/wheel.stl" />
+       
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+
+  <joint name="left_back_wheel_joint" type="fixed">
+    <parent link="right_leg"/>
+    <child link="left_back_wheel"/>
+      <origin rpy="0 1.57075 1.570" xyz="0.25 0.0 -0.05"/>
+  </joint>
+
+ <link name="right_back_wheel">
+    <visual>
+      <geometry>
+	<mesh filename="package://husky_description/meshes/wheel.stl" />
+       
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>
+
+  <joint name="right_back_wheel_joint" type="fixed">
+    <parent link="right_leg"/>
+    <child link="right_back_wheel"/>
+      <origin rpy="0 1.57075 1.570" xyz="-0.25 0.0 -0.05"/>
+  </joint>
+
+
+  <link name="right_tip">
+    <visual>
+      <origin rpy="-3.1415 0 0" xyz="0.09137 0.00495 0"/>
+      <geometry>
+        <mesh filename="file:///opt/ros/hydro/share/urdf_tutorial/urdf/l_finger_tip.dae"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="right_tip_wheel_joint" type="fixed">
+    <parent link="right_leg"/>
+    <child link="right_tip"/>
+      <origin rpy="0 1.57075 0" xyz="-0.25 0.0 -0.05"/>
+  </joint>
+
+
+        <link name="palm">
+            <pose>0.0 0.0 0.05 0 0 0</pose>
+            <inertial>
+                <inertia>
+                    <ixx>0.01</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.01</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.01</izz>
+                </inertia>
+                <mass>0.5</mass>
+            </inertial>
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.1 0.2 0.1</size>
+                    </box>
+                </geometry>
+            </collision>
+            <visual name="visual">
+                <geometry>
+                    <box>
+                        <size>0.1 0.2 0.1</size>
+                    </box>
+                </geometry>
+                <material>
+                    <script>Gazebo/Red</script>
+                </material>
+            </visual>
+        </link>
+
+  <joint name="right_tip_wheel_joint" type="fixed">
+    <parent link="right_leg"/>
+    <child link="right_tip"/>
+      <origin rpy="0 1.57075 0" xyz="-0.25 0.0 -0.05"/>
+  </joint>
+
+
+        
+</robot>
+
